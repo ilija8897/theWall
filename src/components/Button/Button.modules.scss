@@ -1,0 +1,9 @@
+@import '@/styles/variables';
+
+.root {
+    min-width: 20px;
+    min-height: 20px;
+    margin-right: $indent_20;
+    border: none;
+    cursor: pointer;
+}

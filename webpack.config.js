@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack');
 const path = require('path');
 
 module.exports = {
@@ -14,8 +13,8 @@ module.exports = {
     },
     output: {
         path: __dirname + '/build',
-        filename: 'build.js',
-        publicPath: ''
+        filename: 'main.js',
+        assetModuleFilename: 'images/[name][ext]'
     },
     optimization: {
         minimize: true
@@ -23,9 +22,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(tsx|ts)$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
+                test: /\.(png|jpg|jpeg|gif|svg)$/i,
+                type: "asset/resource",
             },
             {
                 test: /\.(js|jsx)$/,
@@ -33,11 +31,15 @@ module.exports = {
                 use: "babel-loader"
             },
             {
+                test: /\.(tsx|ts)$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.(s[ac]ss|css)$/i,
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
-                    'css-modules-typescript-loader',
                     {
                         loader: 'css-loader',
                         options: {
@@ -50,49 +52,20 @@ module.exports = {
                     'sass-loader',
                 ],
             },
-            {
-                test: /\.(png|jpe?g|gif)$/i,
-                exclude: /node_modules/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: './images'
-                },
-            },
         ]
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
-            inject: 'body',
             title: 'EvilMarsians',
             filename: 'index.html'
         }),
-        new ImageminPlugin({
-            bail: false,
-            cache: true,
-            imageminOptions: {
-              plugins: [
-                ["gifsicle", { interlaced: true }],
-                ["jpegtran", { progressive: true }],
-                ["optipng", { optimizationLevel: 5 }],
-                [
-                  "svgo",
-                  {
-                    plugins: [
-                      {
-                        removeViewBox: false
-                      }
-                    ]
-                  }
-                ]
-              ]
-            }
-          })
     ],
     devServer: {
-        contentBase: './src/public',
+        // contentBase: './src/public',
+        static: './build',
+        // inline: true,
         port: 3000,
         liveReload: true,
         open: false,

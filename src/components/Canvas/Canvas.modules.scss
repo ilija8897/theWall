@@ -1,0 +1,14 @@
+@import '@/styles/variables';
+
+.root {
+    width: 100vw;
+    height: 100vh;
+}
+
+.pencil {
+    cursor: url('../../images/pencil-cursor.svg') 0 16, auto;
+}
+
+.eracer {
+    cursor: url('../../images/circle.svg') 8 8, auto;
+}

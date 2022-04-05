@@ -1,12 +1,25 @@
-import React from 'react';
+import React from 'react'
 
-import style from './Button.modules.sass';
+import { useDispatch } from 'react-redux';
+import cn from 'classnames';
+
+import style from './Button.modules.scss';
+import { setActiveTool } from '@/store/reducers/tools';
 
 type Props = {
-    label: string;
-    onClick: (userData: any) => void;
-};
+    children?: React.ReactNode;
+    style?: any;
+    label?: 'pencil' | 'eracer';
+}
 
-export const Button = (props: Props) => {
-    return <button onClick={props.onClick} className={style.root}>{props.label}</button>
+export const Button = ({ children, style: additionalStyle, label }: Props) => {
+    const dispatch = useDispatch();
+    const classes = cn(style.root, { [additionalStyle]: additionalStyle});
+    const handleSetTool = () => {
+        dispatch(setActiveTool(label));
+    }
+
+    return (
+        <button className={classes} onClick={handleSetTool}>{children}</button>
+    )
 }

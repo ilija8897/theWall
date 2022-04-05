@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+.mainWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    position: fixed;
+    width: 100%;
+    padding: 5px 20px;
+    border-bottom: 1px solid #77777720;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    h1 {
+        // background: linear-gradient(170deg, #777 12%, #333 88%);
+        color: #444;
+        // display: table;
+        // background-clip: text;
+        // -webkit-background-clip: text;
+        // // color: transparent;
+    }
+}

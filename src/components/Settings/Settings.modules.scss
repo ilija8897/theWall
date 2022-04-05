@@ -1,0 +1,11 @@
+@import '@/styles/variables';
+
+.root {
+    display: flex;
+    height: $toolbar_h;
+    width: 100%;
+    border: 1px solid $black;
+    border-radius: $b_radius;
+    padding: 10px;
+    margin-bottom: $indent_20;
+}

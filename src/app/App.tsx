@@ -1,18 +1,23 @@
 import React from 'react';
-import { Form } from 'components/Form';
+import { useSelector } from 'react-redux';
 
-import style from './App.modules.sass';
-import { Link } from 'react-router-dom';
+import { Toolbar } from 'components/Toolbar';
+import { Settings } from 'components/Settings';
+import { Canvas } from 'components/Canvas';
 
-export const App = () => {
+import style from './App.modules.scss';
+
+export const App = () => {    
     return (
         <>
             <div className={style.mainWrapper}>
-                <header>
-                    <h1>Evil Martians</h1>
-                </header>
                 <main>
-                    <Form />
+                    <div className={style.header}>
+                        <h1>theWall</h1>
+                        <Toolbar />
+                        {/* <Settings /> */}
+                    </div>
+                    <Canvas />
                 </main>
             </div>
         </>

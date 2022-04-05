@@ -1,0 +1,9 @@
+@import '@/styles/variables';
+
+.root {
+    display: flex;
+    justify-content: end;
+    height: $toolbar_h;
+    width: 100%;
+    padding: 10px;
+}
