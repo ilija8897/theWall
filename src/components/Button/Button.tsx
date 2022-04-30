@@ -9,7 +9,7 @@ import { setActiveTool } from '@/store/reducers/tools';
 type Props = {
     children?: React.ReactNode;
     style?: any;
-    label?: 'pencil' | 'eracer';
+    label?: 'pencil' | 'eracer' | 'rect';
 }
 
 export const Button = ({ children, style: additionalStyle, label }: Props) => {

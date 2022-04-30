@@ -9,6 +9,7 @@ export const Toolbar = () => {
             <Tools>
                 <Tools.Pensil label='Pensil' />
                 <Tools.Eracer label='Eracer' />
+                <Tools.Rect label='Rect' />
             </Tools>
         </div>
     )

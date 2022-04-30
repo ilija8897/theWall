@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { Pencil } from './tools/Pencil';
 import { Eracer } from './tools/Eracer';
+import { Rect } from './tools/Rect';
 
 type Props = {
     children?: React.ReactNode;
@@ -13,6 +14,7 @@ type PensilProps = {
 type ToolsComposition = {
     Pensil: React.FC<PensilProps>;
     Eracer: React.FC<PensilProps>;
+    Rect: React.FC<PensilProps>;
 };
 
 const ToolContext = createContext({});
@@ -41,3 +43,4 @@ export const Tools: React.FC & ToolsComposition = ({ defaultTool = 'pencil', chi
 
 Tools.Pensil = Pencil;
 Tools.Eracer = Eracer;
+Tools.Rect = Rect;
