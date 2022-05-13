@@ -10,6 +10,7 @@ export const Toolbar = () => {
                 <Tools.Pensil label='Pensil' />
                 <Tools.Eracer label='Eracer' />
                 <Tools.Rect label='Rect' />
+                <Tools.Color />
             </Tools>
         </div>
     )

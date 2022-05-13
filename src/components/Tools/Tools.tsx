@@ -2,6 +2,7 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 import { Pencil } from './tools/Pencil';
 import { Eracer } from './tools/Eracer';
 import { Rect } from './tools/Rect';
+import { Color } from './tools/Color';
 
 type Props = {
     children?: React.ReactNode;
@@ -11,22 +12,16 @@ type Props = {
 type PensilProps = {
     label?: string;
 }
+//TODO fix type
 type ToolsComposition = {
     Pensil: React.FC<PensilProps>;
     Eracer: React.FC<PensilProps>;
     Rect: React.FC<PensilProps>;
+    Color: React.FC<PensilProps>;
 };
 
+// TODO context не нужен здесь
 const ToolContext = createContext({});
-
-export function useAccordionContext() {
-    const context = useContext(ToolContext);
-    if (!context) {
-        // Error message should be more descriptive
-        throw new Error("No context found for Accordion");
-    }
-    return context;
-}
 
 export const Tools: React.FC & ToolsComposition = ({ defaultTool = 'pencil', children }: Props) => {
     const [activeTool, setActiveTool] = useState(defaultTool);
@@ -44,3 +39,4 @@ export const Tools: React.FC & ToolsComposition = ({ defaultTool = 'pencil', chi
 Tools.Pensil = Pencil;
 Tools.Eracer = Eracer;
 Tools.Rect = Rect;
+Tools.Color = Color;

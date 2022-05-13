@@ -1,12 +1,11 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCanvas } from '@/store/reducers/canvas';
-import { setDraw } from '@/store/reducers/tools';
+import { canvasAction, setActiveTool } from '@/store/reducers/tools';
 
 import style from './Canvas.modules.scss';
-import pencilCursor from '../../images/pencil-cursor.svg';
-import eracerCursor from '../../images/circle.svg';
+
 import classNames from 'classnames';
 
 type Canvas = {
@@ -14,15 +13,11 @@ type Canvas = {
 };
 
 export const Canvas = function() {
-    const [ isMouseDown, setMouseDown] = useState(false);
     const dispatch = useDispatch();
     const canvasRef: Canvas = useRef();
     const ctxRef = useRef(null);
 
-    const tool = useSelector((state: any) => state.tools.activeFunctional);
     const activeTool = useSelector((state: any) => state.tools.activeTool);    
-    const isDraw = useSelector((state: any) => state.tools.isDraw);
-    const startPosition = useSelector((state: any) => state.tools.startPosition);
     
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -35,8 +30,8 @@ export const Canvas = function() {
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
         ctxRef.current = ctx;
-        // dispatch(setCanvas(canvas));
-        // document.body.style.cursor = pencilCursor;
+        dispatch(setCanvas(ctx));
+        dispatch(setActiveTool('pencil'));
     }, []);
 
     const styles = classNames(
@@ -44,19 +39,20 @@ export const Canvas = function() {
         style[activeTool]
     )
 
-    const drawingData = {
-        ctx: ctxRef,
-        dispatch,
-        isDraw,
+    // const drawingData = {
+    //     ctx: ctxRef,
+    //     dispatch,
+    //     isDraw,
+    // };
+    const handlecanvasAction = (e: MouseEvent<HTMLCanvasElement>) => {
+        dispatch(canvasAction(e));
     };
-    // TODO возможно стоит переделать хендлеры событий мыши на акшены в редакс
-    // ИЛИ перенести  активный инструмент в локальный стейт кенвас как actionCreator
     
     return (
         <canvas
-            onMouseDown={(e) => tool.handleDown(e, ctxRef, dispatch)}
-            onMouseMove={(e) => tool.handleDraw(e, ctxRef, isDraw, startPosition)}
-            onMouseUp={(e) => tool.handleUp(ctxRef, dispatch)}
+            onMouseDown={e => handlecanvasAction(e)}
+            onMouseMove={e => handlecanvasAction(e)}
+            onMouseUp={e => handlecanvasAction(e)}
             ref={canvasRef}
             className={styles}
             height={500}

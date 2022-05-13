@@ -8,9 +8,9 @@ export const store = configureStore({
         canvas: canvasReducer,
         tools: toolsReducer,
     },
-    middleware: [
-        logger
-    ]
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+      }).concat(logger),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
