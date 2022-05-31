@@ -1,25 +1,26 @@
-import React, { MouseEvent, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { MouseEvent, useLayoutEffect, useRef } from 'react';
 
-import { setCanvas } from '@/store/reducers/canvas';
+import { setCanvas, setCurrentCanvas } from '@/store/reducers/canvas';
 import { canvasAction, setActiveTool } from '@/store/reducers/tools';
 
 import style from './Canvas.modules.scss';
 
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 
 type Canvas = {
     current: HTMLCanvasElement;
 };
 
 export const Canvas = function() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const canvasRef: Canvas = useRef();
     const ctxRef = useRef(null);
 
-    const activeTool = useSelector((state: any) => state.tools.activeTool);    
+    const activeTool = useAppSelector(state => state.tools.activeTool);    
     
-    useEffect(() => {
+    useLayoutEffect(() => {
+        dispatch(setActiveTool('pencil'));
         const canvas = canvasRef.current;
         canvas.width = window.innerWidth * 2;
         canvas.height = window.innerHeight * 2;
@@ -31,7 +32,7 @@ export const Canvas = function() {
         ctx.lineWidth = 1;
         ctxRef.current = ctx;
         dispatch(setCanvas(ctx));
-        dispatch(setActiveTool('pencil'));
+        dispatch(setCurrentCanvas(canvas));
     }, []);
 
     const styles = classNames(

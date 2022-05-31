@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import canvasReducer from '@/store/reducers/canvas';
 import toolsReducer from '@/store/reducers/tools';
 import logger from 'redux-logger'
@@ -10,7 +10,7 @@ export const store = configureStore({
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false
-      }).concat(logger),
+      }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

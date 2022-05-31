@@ -1,8 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { Toolbar } from 'components/Toolbar';
-import { Settings } from 'components/Settings';
 import { Canvas } from 'components/Canvas';
 
 import style from './App.modules.scss';

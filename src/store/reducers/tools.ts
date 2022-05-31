@@ -13,9 +13,8 @@ export type State = {
     isDraw: boolean;
     currentColor: string;
     startPosition: { x: number, y: number };
-    savedCanvas: null | HTMLCanvasElement;
+    savedCanvas: null | string;
 }
-console.log(toolsUtils);
 
 const initialState: State = {
     activeTool: 'pencil',
@@ -49,14 +48,14 @@ export const toolsSlice = createSlice({
     }
 });
 export const canvasAction = (e: MouseEvent<HTMLCanvasElement>) => async (dispatch: Dispatch, getState: () => RootState) => {
-    const { tools, tools: { activeFunctional }, canvas: { canvas } } = getState();
+    const { tools, tools: { activeFunctional }, canvas: { canvas, currentCanvas } } = getState();
 
     switch (e.type) {
         case 'mousedown':
             activeFunctional.handleDown(e, canvas, dispatch, tools);
             break;
         case 'mousemove':
-            activeFunctional.handleDraw(e, canvas, tools);
+            activeFunctional.handleDraw(e, canvas, tools, dispatch);
             break;
         case 'mouseup':
             activeFunctional.handleUp(canvas, dispatch, tools);

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
-import style from './Button.modules.scss';
+import style from './ToolButton.modules.scss';
 import { setActiveTool } from '@/store/reducers/tools';
+import { useAppDispatch } from '@/hooks/redux';
 
 type Props = {
     children?: React.ReactNode;
@@ -12,12 +12,13 @@ type Props = {
     label?: 'pencil' | 'eracer' | 'rect';
 }
 
-export const Button = ({ children, style: additionalStyle, label }: Props) => {
-    const dispatch = useDispatch();
-    const classes = cn(style.root, { [additionalStyle]: additionalStyle});
+export const ToolButton = ({ children, label }: Props) => {
+    const dispatch = useAppDispatch();
     const handleSetTool = () => {
         dispatch(setActiveTool(label));
     }
+    
+    const classes = cn(style.root, { [style[label]]: label });
 
     return (
         <button className={classes} onClick={handleSetTool}>{children}</button>

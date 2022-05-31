@@ -1,14 +1,14 @@
 import { setColor } from '@/store/reducers/tools';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/index';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 
 export const Color = () => {
-    const dispatch = useDispatch();
-    const currentColor = useSelector((state: RootState) => state.tools.currentColor);
+    const dispatch = useAppDispatch();
+
+    const currentColor = useAppSelector(state => state.tools.currentColor);
+
     const handleColorPick = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target);
-        
         dispatch(setColor(e.target.value));
     }
     return (

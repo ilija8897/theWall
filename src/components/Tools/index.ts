@@ -7,4 +7,3 @@ export const toolsUtils = {
     pencil,
     rect,
 };
-export { Tools } from './Tools';
