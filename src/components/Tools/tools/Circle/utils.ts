@@ -1,11 +1,11 @@
 import { setDraw, setStartPosition, saveCanvas, State } from '@/store/reducers/tools';
 import { Dispatch } from '@reduxjs/toolkit';
 
-export const rect = {
+export const circle = {
     handleDown: function({nativeEvent}: any, ctx: any, dispatch: any, state: State) {
         ctx.beginPath();
         ctx.moveTo(nativeEvent.offsetX, nativeEvent.offsetY);     
-        ctx.fillStyle = state.currentColor;
+        ctx.strokeStyle = state.currentColor;
         const  savedCanvas = ctx.canvas.toDataURL();
         dispatch(saveCanvas(savedCanvas));
         dispatch(setStartPosition({ x: nativeEvent.offsetX, y: nativeEvent.offsetY }));
@@ -25,7 +25,9 @@ export const rect = {
                 ctx.clearRect(0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
                 ctx.drawImage(img, 0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
                 ctx.beginPath();
-                ctx.fillRect(x, y, width, height);
+                // ctx.arc(x + width/2, y + height/2, width/2, width/2, 2 * Math.PI);
+                ctx.arc(x, y, Math.abs(width), 0, 2 * Math.PI);
+                ctx.stroke();
             }
         }
     },

@@ -10,6 +10,7 @@ export const Toolbar = () => {
                 <ToolButton label='pencil' />
                 <ToolButton label='eracer' />
                 <ToolButton label='rect' />
+                <ToolButton label='circle' />
                 <Color />
         </div>
     )

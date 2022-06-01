@@ -9,7 +9,8 @@ import { useAppDispatch } from '@/hooks/redux';
 type Props = {
     children?: React.ReactNode;
     style?: any;
-    label?: 'pencil' | 'eracer' | 'rect';
+    //TODO Вынести типы инструментов в общие
+    label?: 'pencil' | 'eracer' | 'rect' | 'circle';
 }
 
 export const ToolButton = ({ children, label }: Props) => {
