@@ -11,6 +11,7 @@ export const Toolbar = () => {
                 <ToolButton label='eracer' />
                 <ToolButton label='rect' />
                 <ToolButton label='circle' />
+                <ToolButton label='line' />
                 <Color />
         </div>
     )

@@ -10,7 +10,7 @@ type Props = {
     children?: React.ReactNode;
     style?: any;
     //TODO Вынести типы инструментов в общие
-    label?: 'pencil' | 'eracer' | 'rect' | 'circle';
+    label?: 'pencil' | 'eracer' | 'rect' | 'circle' | 'line';
 }
 
 export const ToolButton = ({ children, label }: Props) => {

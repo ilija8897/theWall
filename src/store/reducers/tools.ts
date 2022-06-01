@@ -4,7 +4,7 @@ import { toolsUtils } from 'components/Tools';
 import { RootState } from '..';
 
 type ToolsType = {
-    payload: 'pencil' | 'eracer' | 'rect' | 'circle';
+    payload: 'pencil' | 'eracer' | 'rect' | 'circle' | 'line';
 }
 
 export type State = {
