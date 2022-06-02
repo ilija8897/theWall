@@ -12,6 +12,7 @@ export type State = {
     activeFunctional: undefined | any;
     isDraw: boolean;
     currentColor: string;
+    lineThickness: string;
     startPosition: { x: number, y: number };
     savedCanvas: null | string;
 }
@@ -19,6 +20,7 @@ export type State = {
 const initialState: State = {
     activeTool: 'pencil',
     currentColor: '#000000',
+    lineThickness: '1',
     startPosition: { x: 0, y: 0 },
     savedCanvas: null,
     activeFunctional: undefined,
@@ -36,6 +38,9 @@ export const toolsSlice = createSlice({
         setColor: (state, action) => {
             state.currentColor = action.payload;
         },
+        setLineThickness: (state, action) => {
+            state.lineThickness = action.payload;
+        },
         setStartPosition: (state, { payload: { x, y }}) => {
             state.startPosition = { x, y };
         },
@@ -48,14 +53,14 @@ export const toolsSlice = createSlice({
     }
 });
 export const canvasAction = (e: MouseEvent<HTMLCanvasElement>) => async (dispatch: Dispatch, getState: () => RootState) => {
-    const { tools, tools: { activeFunctional }, canvas: { canvas, currentCanvas } } = getState();
-
+    const { tools, tools: { activeFunctional }, canvas: { canvas } } = getState();
+    // причесать параметры функций
     switch (e.type) {
         case 'mousedown':
             activeFunctional.handleDown(e, canvas, dispatch, tools);
             break;
         case 'mousemove':
-            activeFunctional.handleDraw(e, canvas, tools, dispatch);
+            activeFunctional.handleDraw(e, canvas, tools);
             break;
         case 'mouseup':
             activeFunctional.handleUp(canvas, dispatch, tools);
@@ -66,5 +71,5 @@ export const canvasAction = (e: MouseEvent<HTMLCanvasElement>) => async (dispatc
     
 }
 
-export const { setActiveTool, setDraw, setStartPosition, saveCanvas, setColor } = toolsSlice.actions;
+export const { setActiveTool, setDraw, setLineThickness, setStartPosition, saveCanvas, setColor } = toolsSlice.actions;
 export default toolsSlice.reducer;

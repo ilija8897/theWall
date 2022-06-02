@@ -12,13 +12,13 @@ type Canvas = {
     current: HTMLCanvasElement;
 };
 
-export const Canvas = function() {
+export const Canvas = function () {
     const dispatch = useAppDispatch();
     const canvasRef: Canvas = useRef();
     const ctxRef = useRef(null);
 
-    const activeTool = useAppSelector(state => state.tools.activeTool);    
-    
+    const activeTool = useAppSelector((state) => state.tools.activeTool);
+
     useLayoutEffect(() => {
         dispatch(setActiveTool('pencil'));
         const canvas = canvasRef.current;
@@ -26,7 +26,7 @@ export const Canvas = function() {
         canvas.height = window.innerHeight * 2;
 
         const ctx = canvas.getContext('2d');
-        ctx.scale(2,2);
+        ctx.scale(2, 2);
         ctx.lineCap = 'round';
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
@@ -35,29 +35,21 @@ export const Canvas = function() {
         dispatch(setCurrentCanvas(canvas));
     }, []);
 
-    const styles = classNames(
-        style.root,
-        style[activeTool]
-    )
+    const styles = classNames(style.root, style[activeTool]);
 
-    // const drawingData = {
-    //     ctx: ctxRef,
-    //     dispatch,
-    //     isDraw,
-    // };
     const handlecanvasAction = (e: MouseEvent<HTMLCanvasElement>) => {
         dispatch(canvasAction(e));
     };
-    
+
     return (
         <canvas
-            onMouseDown={e => handlecanvasAction(e)}
-            onMouseMove={e => handlecanvasAction(e)}
-            onMouseUp={e => handlecanvasAction(e)}
+            onMouseDown={(e) => handlecanvasAction(e)}
+            onMouseMove={(e) => handlecanvasAction(e)}
+            onMouseUp={(e) => handlecanvasAction(e)}
             ref={canvasRef}
             className={styles}
             height={500}
-            width={700}>
-        </canvas>
-    )
-}
+            width={700}
+        ></canvas>
+    );
+};

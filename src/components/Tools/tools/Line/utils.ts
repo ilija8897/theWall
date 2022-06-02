@@ -4,6 +4,7 @@ export const line = {
     handleDown: function({nativeEvent}: any, ctx: any, dispatch: any, state: State) {
         ctx.beginPath();    
         ctx.strokeStyle = state.currentColor;
+        ctx.lineWidth = state.lineThickness;
         const  savedCanvas = ctx.canvas.toDataURL();
         dispatch(saveCanvas(savedCanvas));
         dispatch(setStartPosition({ x: nativeEvent.offsetX, y: nativeEvent.offsetY }));

@@ -1,5 +1,4 @@
 import { setDraw, setStartPosition, saveCanvas, State } from '@/store/reducers/tools';
-import { Dispatch } from '@reduxjs/toolkit';
 
 export const rect = {
     handleDown: function({nativeEvent}: any, ctx: any, dispatch: any, state: State) {
@@ -11,7 +10,7 @@ export const rect = {
         dispatch(setStartPosition({ x: nativeEvent.offsetX, y: nativeEvent.offsetY }));
         dispatch(setDraw(true));
     },
-    handleDraw: function ({nativeEvent}: any,  ctx: any, state: State, dispatch: Dispatch ) {
+    handleDraw: function ({nativeEvent}: any,  ctx: any, state: State ) {
         const width = nativeEvent.offsetX - state.startPosition.x;
         const height = nativeEvent.offsetY - state.startPosition.y;
         const x = state.startPosition.x;
@@ -29,7 +28,7 @@ export const rect = {
             }
         }
     },
-    handleUp: function (ctx: any, dispatch: any, state: State) {
+    handleUp: function (ctx: any, dispatch: any) {
         dispatch(setDraw(false));
     }
 };

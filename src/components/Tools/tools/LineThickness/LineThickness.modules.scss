@@ -1,0 +1,18 @@
+@import '@/styles/variables';
+
+.root {
+    position: relative;
+
+    input {
+        display: none;
+        position: absolute;
+        top: 140%;
+        left: 0;
+        border: 1px solid $border_color;
+        width: 80px;
+
+    }
+    .visible {
+        display: block;
+    }
+}

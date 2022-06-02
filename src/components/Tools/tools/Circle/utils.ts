@@ -1,17 +1,17 @@
 import { setDraw, setStartPosition, saveCanvas, State } from '@/store/reducers/tools';
-import { Dispatch } from '@reduxjs/toolkit';
 
 export const circle = {
     handleDown: function({nativeEvent}: any, ctx: any, dispatch: any, state: State) {
         ctx.beginPath();
         ctx.moveTo(nativeEvent.offsetX, nativeEvent.offsetY);     
         ctx.strokeStyle = state.currentColor;
+        ctx.lineWidth = state.lineThickness;
         const  savedCanvas = ctx.canvas.toDataURL();
         dispatch(saveCanvas(savedCanvas));
         dispatch(setStartPosition({ x: nativeEvent.offsetX, y: nativeEvent.offsetY }));
         dispatch(setDraw(true));
     },
-    handleDraw: function ({nativeEvent}: any,  ctx: any, state: State, dispatch: Dispatch ) {
+    handleDraw: function ({nativeEvent}: any,  ctx: any, state: State ) {
         const width = nativeEvent.offsetX - state.startPosition.x;
         const x = state.startPosition.x;
         const y = state.startPosition.y;
@@ -29,7 +29,7 @@ export const circle = {
             }
         }
     },
-    handleUp: function (ctx: any, dispatch: any, state: State) {
+    handleUp: function (ctx: any, dispatch: any) {
         dispatch(setDraw(false));
     }
 };

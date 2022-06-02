@@ -1,13 +1,15 @@
 import React from 'react';
-import { ToolButton } from '../ToolButton';
+import { ToolButton } from '../Tools/ToolButton';
 import { Color } from '../Tools/tools/Color';
+import { LineThickness } from '../Tools/tools/LineThickness';
 
 import style from './Toolbar.modules.scss';
 
 export const Toolbar = () => {
     return (
         <div className={style.root}>
-                <ToolButton label='pencil' />
+                <LineThickness />
+                <ToolButton label="pencil" />
                 <ToolButton label='eracer' />
                 <ToolButton label='rect' />
                 <ToolButton label='circle' />

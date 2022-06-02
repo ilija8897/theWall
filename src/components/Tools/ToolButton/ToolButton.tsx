@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import cn from 'classnames';
 
@@ -9,19 +9,26 @@ import { useAppDispatch } from '@/hooks/redux';
 type Props = {
     children?: React.ReactNode;
     style?: any;
+    onClick?: () => void;
+    className?: Record<string, unknown>;
     //TODO Вынести типы инструментов в общие
     label?: 'pencil' | 'eracer' | 'rect' | 'circle' | 'line';
-}
+};
 
-export const ToolButton = ({ children, label }: Props) => {
+export const ToolButton = ({ children, label, onClick, className }: Props) => {
     const dispatch = useAppDispatch();
     const handleSetTool = () => {
         dispatch(setActiveTool(label));
-    }
-    
-    const classes = cn(style.root, { [style[label]]: label });
+    };
+
+    const classes = cn(style.root, className, { [style[label]]: label });
 
     return (
-        <button className={classes} onClick={handleSetTool}>{children}</button>
-    )
-}
+        <button
+            className={classes}
+            onClick={!onClick ? handleSetTool : onClick}
+        >
+            {children}
+        </button>
+    );
+};

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 
+import style from './Color.modules.scss';
 export const Color = () => {
     const dispatch = useAppDispatch();
 
@@ -12,6 +13,6 @@ export const Color = () => {
         dispatch(setColor(e.target.value));
     }
     return (
-        <input type='color' onChange={handleColorPick} value={currentColor} />
+        <input className={style.root} type='color' onChange={handleColorPick} value={currentColor} />
     );
 };
