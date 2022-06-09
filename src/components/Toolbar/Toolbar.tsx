@@ -8,13 +8,13 @@ import style from './Toolbar.modules.scss';
 export const Toolbar = () => {
     return (
         <div className={style.root}>
-                <LineThickness />
-                <ToolButton label="pencil" />
-                <ToolButton label='eracer' />
-                <ToolButton label='rect' />
-                <ToolButton label='circle' />
-                <ToolButton label='line' />
-                <Color />
+            <LineThickness />
+            <ToolButton label='pencil' />
+            <ToolButton label='eracer' />
+            <ToolButton label='rect' />
+            <ToolButton label='circle' />
+            <ToolButton label='line' />
+            <Color />
         </div>
-    )
+    );
 };

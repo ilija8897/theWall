@@ -14,8 +14,8 @@ type Canvas = {
 
 export const Canvas = function () {
     const dispatch = useAppDispatch();
-    const canvasRef: Canvas = useRef();
-    const ctxRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
     const activeTool = useAppSelector((state) => state.tools.activeTool);
 
@@ -30,7 +30,9 @@ export const Canvas = function () {
         ctx.lineCap = 'round';
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
-        ctxRef.current = ctx;
+        if (canvasRef.current) {
+            ctxRef.current = ctx;
+        }
         dispatch(setCanvas(ctx));
         dispatch(setCurrentCanvas(canvas));
     }, []);

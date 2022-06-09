@@ -5,6 +5,7 @@ import cn from 'classnames';
 import style from './ToolButton.modules.scss';
 import { setActiveTool } from '@/store/reducers/tools';
 import { useAppDispatch } from '@/hooks/redux';
+import { AdditionalTools, ShapeTools, ShapeToolsEnums } from '..';
 
 type Props = {
     children?: React.ReactNode;
@@ -12,22 +13,19 @@ type Props = {
     onClick?: () => void;
     className?: Record<string, unknown>;
     //TODO Вынести типы инструментов в общие
-    label?: 'pencil' | 'eracer' | 'rect' | 'circle' | 'line';
+    label?: ShapeTools | AdditionalTools;
 };
 
 export const ToolButton = ({ children, label, onClick, className }: Props) => {
     const dispatch = useAppDispatch();
     const handleSetTool = () => {
-        dispatch(setActiveTool(label));
+        dispatch(setActiveTool(label as ShapeTools));
     };
 
     const classes = cn(style.root, className, { [style[label]]: label });
 
     return (
-        <button
-            className={classes}
-            onClick={!onClick ? handleSetTool : onClick}
-        >
+        <button className={classes} onClick={!onClick ? handleSetTool : onClick}>
             {children}
         </button>
     );
