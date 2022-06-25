@@ -3,9 +3,9 @@ import React from 'react';
 import { Toolbar } from 'components/Toolbar';
 import { Canvas } from 'components/Canvas';
 
-import style from './App.modules.scss';
+import style from './App.module.scss';
 
-export const App = () => {    
+export const App = () => {
     return (
         <>
             <div className={style.mainWrapper}>
@@ -19,5 +19,5 @@ export const App = () => {
                 </main>
             </div>
         </>
-    )
+    );
 };

@@ -7,28 +7,28 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
-            components: path.resolve(__dirname, 'src/components/')
+            components: path.resolve(__dirname, 'src/components/'),
         },
         extensions: ['.ts', '.tsx', '.js'],
     },
     output: {
         path: __dirname + '/build',
         filename: 'main.js',
-        assetModuleFilename: 'images/[name][ext]'
+        assetModuleFilename: 'images/[name][ext]',
     },
     optimization: {
-        minimize: true
+        minimize: true,
     },
     module: {
         rules: [
             {
                 test: /\.(png|jpg|jpeg|gif|svg)$/i,
-                type: "asset/resource",
+                type: 'asset/resource',
             },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: "babel-loader"
+                use: 'babel-loader',
             },
             {
                 test: /\.(tsx|ts)$/,
@@ -45,21 +45,21 @@ module.exports = {
                         options: {
                             modules: {
                                 context: path.resolve(__dirname, 'context'),
-                                localIdentName: '[local]--[hash:base64:5]'
-                            }
-                        }
+                                localIdentName: '[local]--[hash:base64:5]',
+                            },
+                        },
                     },
                     'sass-loader',
                 ],
             },
-        ]
+        ],
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
             title: 'EvilMarsians',
-            filename: 'index.html'
+            filename: 'index.html',
         }),
     ],
     devServer: {
@@ -71,6 +71,6 @@ module.exports = {
         open: false,
         compress: true,
         hot: true,
-        host: 'localhost'
-    }
+        host: 'localhost',
+    },
 };

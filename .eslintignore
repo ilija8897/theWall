@@ -2,3 +2,6 @@ node_modules
 .babelrc
 .build
 src/images
+webpack.config.js
+.prettierrc
+tsconfig.json

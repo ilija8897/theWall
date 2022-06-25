@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 
-import style from './LineThickness.modules.scss';
+import style from './LineThickness.module.scss';
 import { ToolButton } from '../../ToolButton';
 
 export const LineThickness = () => {
@@ -18,6 +18,7 @@ export const LineThickness = () => {
     const handleOpen = () => {
         setOpenState((state) => !state);
     };
+
     return (
         <ToolButton className={style.root} onClick={handleOpen}>
             {lineThickness}

@@ -3,7 +3,7 @@ import React, { MouseEvent, useLayoutEffect, useRef } from 'react';
 import { setCanvas, setCurrentCanvas } from '@/store/reducers/canvas';
 import { canvasAction, setActiveTool } from '@/store/reducers/tools';
 
-import style from './Canvas.modules.scss';
+import style from './Canvas.module.scss';
 
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';

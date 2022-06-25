@@ -3,7 +3,7 @@ import { ToolButton } from '../Tools/ToolButton';
 import { Color } from '../Tools/tools/Color';
 import { LineThickness } from '../Tools/tools/LineThickness';
 
-import style from './Toolbar.modules.scss';
+import style from './Toolbar.module.scss';
 
 export const Toolbar = () => {
     return (

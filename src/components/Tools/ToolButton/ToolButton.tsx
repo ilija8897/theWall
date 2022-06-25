@@ -2,14 +2,14 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import style from './ToolButton.modules.scss';
+import style from './ToolButton.module.scss';
 import { setActiveTool } from '@/store/reducers/tools';
 import { useAppDispatch } from '@/hooks/redux';
-import { AdditionalTools, ShapeTools, ShapeToolsEnums } from '..';
+import { AdditionalTools, ShapeTools } from '..';
 
 type Props = {
     children?: React.ReactNode;
-    style?: any;
+    // style?: any;
     onClick?: () => void;
     className?: Record<string, unknown>;
     //TODO Вынести типы инструментов в общие
