@@ -11,9 +11,9 @@ type Props = {
     children?: React.ReactNode;
     // style?: any;
     onClick?: () => void;
-    className?: Record<string, unknown>;
+    className?: Record<string, unknown> | string;
     //TODO Вынести типы инструментов в общие
-    label?: ShapeTools | AdditionalTools;
+    label?: AdditionalTools | ShapeTools;
 };
 
 export const ToolButton = ({ children, label, onClick, className }: Props) => {

@@ -1,3 +1,4 @@
+/* eslint-disable css-modules/no-unused-class */
 import React, { MouseEvent, useLayoutEffect, useRef } from 'react';
 
 import { setCanvas, setCurrentCanvas } from '@/store/reducers/canvas';

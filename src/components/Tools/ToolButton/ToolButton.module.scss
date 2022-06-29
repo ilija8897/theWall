@@ -1,9 +1,9 @@
-@import '@/styles/variables';
+// @import '../../../styles/variables';
 
 .root {
     min-width: 20px;
     min-height: 20px;
-    margin-right: $indent_20;
+    margin-right: 20px;
     border: none;
     cursor: pointer;
 }
@@ -20,5 +20,11 @@
     background: url('../../../images/circle.svg') no-repeat center/100%;
 }
 .line {
+    background: url('../../../images/line.svg') no-repeat center/100%;
+}
+.undo {
+    background: url('../../../images/line.svg') no-repeat center/100%;
+}
+.redo {
     background: url('../../../images/line.svg') no-repeat center/100%;
 }
